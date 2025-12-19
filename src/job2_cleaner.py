@@ -79,8 +79,8 @@ def run_consumer():
         cleaned = clean_record_pandas(raw_record)
         if cleaned:
             batch.append(cleaned)
-        #batch insert every 33 records
-        if len(batch) >= 33:
+        #batch insert every 34 records
+        if len(batch) >= 34:
             insert_events(batch)
             logging.info(f"Inserted batch of {len(batch)} records")
             print(f"Inserted batch of {len(batch)} records")
