@@ -62,23 +62,35 @@ def run_consumer():
     consumer = KafkaConsumer(
         KAFKA_TOPIC,
         bootstrap_servers=KAFKA_BROKER,
-        auto_offset_reset='earliest',
+        auto_offset_reset='latest',
         enable_auto_commit=True,
         group_id="job2_cleaner_group",
-        value_deserializer=lambda v: json.loads(v.decode('utf-8'))
+        value_deserializer=lambda v: json.loads(v.decode('utf-8')),
+        consumer_timeout_ms=5000
     )
 
     logging.info("Consumer started, waiting for messages...")
     print("Consumer started, waiting for messages...")
+    
+    batch = []
 
     for message in consumer:
         raw_record = message.value
-        print("Message received")
         cleaned = clean_record_pandas(raw_record)
-        print(f"Cleaned record: {cleaned}")
-        insert_events([cleaned])
-        logging.info(f"Processed facility {cleaned['facility_id']}: {cleaned['status']}")
-        print(f"Processed facility {cleaned['facility_id']}: {cleaned['status']}")
+        if cleaned:
+            batch.append(cleaned)
+        #batch insert every 33 records
+        if len(batch) >= 33:
+            insert_events(batch)
+            logging.info(f"Inserted batch of {len(batch)} records")
+            print(f"Inserted batch of {len(batch)} records")
+            batch = []
+     #insert remaining records       
+    if batch:
+        insert_events(batch)
+        logging.info(f"Inserted final batch of {len(batch)} records")
+    consumer.close()
+    logging.info("Batch consumer finished")
 
 
 if __name__ == "__main__":
