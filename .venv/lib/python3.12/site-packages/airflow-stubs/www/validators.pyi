@@ -1,0 +1,26 @@
+from _typeshed import Incomplete
+from airflow.models.connection import CONN_ID_MAX_LEN as CONN_ID_MAX_LEN, sanitize_conn_id as sanitize_conn_id
+from airflow.utils import helpers as helpers
+from wtforms.validators import EqualTo
+
+class GreaterEqualThan(EqualTo):
+    def __call__(self, form, field) -> None: ...
+
+class ValidJson:
+    message: Incomplete
+    def __init__(self, message: Incomplete | None = None) -> None: ...
+    def __call__(self, form, field) -> None: ...
+
+class ValidKey:
+    max_length: Incomplete
+    def __init__(self, max_length: int = 200) -> None: ...
+    def __call__(self, form, field) -> None: ...
+
+class ReadOnly:
+    def __call__(self, form, field) -> None: ...
+
+class ValidConnID:
+    message: str
+    max_length: Incomplete
+    def __init__(self, max_length: int = ...) -> None: ...
+    def __call__(self, form, field) -> None: ...

@@ -1,0 +1,6 @@
+from airflow.cli.cli_parser import ActionCommand as ActionCommand, GroupCommand as GroupCommand, airflow_commands as airflow_commands
+from airflow.cli.simple_table import AirflowConsole as AirflowConsole, SimpleTable as SimpleTable
+from airflow.utils.cli import suppress_logs_and_warning as suppress_logs_and_warning
+
+def cheat_sheet(args) -> None: ...
+def display_commands_index(): ...

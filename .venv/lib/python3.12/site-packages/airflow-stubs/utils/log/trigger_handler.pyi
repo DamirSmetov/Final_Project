@@ -1,0 +1,29 @@
+import logging
+from airflow.utils.log.file_task_handler import FileTaskHandler as FileTaskHandler
+from contextvars import ContextVar
+from logging.handlers import QueueHandler
+
+ctx_task_instance: ContextVar
+ctx_trigger_id: ContextVar
+ctx_trigger_end: ContextVar
+ctx_indiv_trigger: ContextVar
+
+class TriggerMetadataFilter(logging.Filter):
+    def filter(self, record): ...
+
+class DropTriggerLogsFilter(logging.Filter):
+    def filter(self, record): ...
+
+class TriggererHandlerWrapper(logging.Handler):
+    trigger_should_queue: bool
+    base_handler: FileTaskHandler
+    handlers: dict[int, FileTaskHandler]
+    def __init__(self, base_handler: FileTaskHandler, level=...) -> None: ...
+    def emit(self, record) -> None: ...
+    def handle(self, record): ...
+    def close_one(self, trigger_id) -> None: ...
+    def flush(self) -> None: ...
+    def close(self) -> None: ...
+
+class LocalQueueHandler(QueueHandler):
+    def emit(self, record: logging.LogRecord) -> None: ...

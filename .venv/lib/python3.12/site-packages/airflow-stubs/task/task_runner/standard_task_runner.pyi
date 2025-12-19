@@ -1,0 +1,16 @@
+from _typeshed import Incomplete
+from airflow.jobs.local_task_job_runner import LocalTaskJobRunner as LocalTaskJobRunner
+from airflow.models.taskinstance import TaskReturnCode as TaskReturnCode
+from airflow.settings import CAN_FORK as CAN_FORK
+from airflow.stats import Stats as Stats
+from airflow.task.task_runner.base_task_runner import BaseTaskRunner as BaseTaskRunner
+from airflow.utils.process_utils import reap_process_group as reap_process_group, set_new_process_group as set_new_process_group
+
+class StandardTaskRunner(BaseTaskRunner):
+    dag: Incomplete
+    def __init__(self, job_runner: LocalTaskJobRunner) -> None: ...
+    process: Incomplete
+    def start(self) -> None: ...
+    def return_code(self, timeout: float = 0) -> int | None: ...
+    def terminate(self) -> None: ...
+    def get_process_pid(self) -> int: ...

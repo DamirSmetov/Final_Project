@@ -1,0 +1,33 @@
+from _typeshed import Incomplete
+from airflow.models.taskinstance import SimpleTaskInstance as SimpleTaskInstance
+from airflow.utils.state import TaskInstanceState as TaskInstanceState
+
+class CallbackRequest:
+    full_filepath: Incomplete
+    processor_subdir: Incomplete
+    msg: Incomplete
+    def __init__(self, full_filepath: str, processor_subdir: str | None = None, msg: str | None = None) -> None: ...
+    def __eq__(self, other): ...
+    def to_json(self) -> str: ...
+    @classmethod
+    def from_json(cls, json_str: str): ...
+
+class TaskCallbackRequest(CallbackRequest):
+    simple_task_instance: Incomplete
+    task_callback_type: Incomplete
+    def __init__(self, full_filepath: str, simple_task_instance: SimpleTaskInstance, processor_subdir: str | None = None, msg: str | None = None, task_callback_type: TaskInstanceState | None = None) -> None: ...
+    @property
+    def is_failure_callback(self) -> bool: ...
+    def to_json(self) -> str: ...
+    @classmethod
+    def from_json(cls, json_str: str): ...
+
+class DagCallbackRequest(CallbackRequest):
+    dag_id: Incomplete
+    run_id: Incomplete
+    is_failure_callback: Incomplete
+    def __init__(self, full_filepath: str, dag_id: str, run_id: str, processor_subdir: str | None, is_failure_callback: bool | None = True, msg: str | None = None) -> None: ...
+
+class SlaCallbackRequest(CallbackRequest):
+    dag_id: Incomplete
+    def __init__(self, full_filepath: str, dag_id: str, processor_subdir: str | None, msg: str | None = None) -> None: ...

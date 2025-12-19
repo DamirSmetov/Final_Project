@@ -1,0 +1,7 @@
+from _typeshed import Incomplete
+from airflow.exceptions import RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.providers.fab.auth_manager.security_manager.override import FabAirflowSecurityManagerOverride as FabAirflowSecurityManagerOverride
+
+EXISTING_ROLES: Incomplete
+
+class AirflowSecurityManager(FabAirflowSecurityManagerOverride): ...

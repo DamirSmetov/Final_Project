@@ -1,0 +1,26 @@
+from _typeshed import Incomplete
+from airflow.exceptions import AirflowException as AirflowException, AirflowFileParseException as AirflowFileParseException, ConnectionNotUnique as ConnectionNotUnique, FileSyntaxError as FileSyntaxError, RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.models.connection import Connection as Connection
+from airflow.secrets.base_secrets import BaseSecretsBackend as BaseSecretsBackend
+from airflow.utils import yaml as yaml
+from airflow.utils.file import COMMENT_PATTERN as COMMENT_PATTERN
+from airflow.utils.log.logging_mixin import LoggingMixin as LoggingMixin
+from typing import Any
+
+log: Incomplete
+
+def get_connection_parameter_names() -> set[str]: ...
+
+FILE_PARSERS: Incomplete
+
+def load_variables(file_path: str) -> dict[str, str]: ...
+def load_connections(file_path) -> dict[str, list[Any]]: ...
+def load_connections_dict(file_path: str) -> dict[str, Any]: ...
+
+class LocalFilesystemBackend(BaseSecretsBackend, LoggingMixin):
+    variables_file: Incomplete
+    connections_file: Incomplete
+    def __init__(self, variables_file_path: str | None = None, connections_file_path: str | None = None) -> None: ...
+    def get_connection(self, conn_id: str) -> Connection | None: ...
+    def get_connections(self, conn_id: str) -> list[Any]: ...
+    def get_variable(self, key: str) -> str | None: ...

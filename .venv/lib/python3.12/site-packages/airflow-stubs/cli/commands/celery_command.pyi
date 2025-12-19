@@ -1,0 +1,13 @@
+from airflow import settings as settings
+from airflow.cli.commands.daemon_utils import run_command_with_daemon_option as run_command_with_daemon_option
+from airflow.configuration import conf as conf
+from airflow.utils.cli import setup_locations as setup_locations
+from airflow.utils.providers_configuration_loader import providers_configuration_loaded as providers_configuration_loaded
+from airflow.utils.serve_logs import serve_logs as serve_logs
+
+WORKER_PROCESS_NAME: str
+
+def flower(args): ...
+def logger_setup_handler(logger, **kwargs): ...
+def worker(args) -> None: ...
+def stop_worker(args) -> None: ...

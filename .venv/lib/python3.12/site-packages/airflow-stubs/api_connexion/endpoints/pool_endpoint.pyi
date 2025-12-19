@@ -1,0 +1,16 @@
+from airflow.api_connexion import security as security
+from airflow.api_connexion.endpoints.request_dict import get_json_request_dict as get_json_request_dict
+from airflow.api_connexion.exceptions import AlreadyExists as AlreadyExists, BadRequest as BadRequest, NotFound as NotFound
+from airflow.api_connexion.parameters import apply_sorting as apply_sorting, check_limit as check_limit, format_parameters as format_parameters
+from airflow.api_connexion.schemas.pool_schema import PoolCollection as PoolCollection, pool_collection_schema as pool_collection_schema, pool_schema as pool_schema
+from airflow.api_connexion.types import APIResponse as APIResponse, UpdateMask as UpdateMask
+from airflow.models.pool import Pool as Pool
+from airflow.utils.session import NEW_SESSION as NEW_SESSION, provide_session as provide_session
+from airflow.www.decorators import action_logging as action_logging
+from sqlalchemy.orm import Session as Session
+
+def delete_pool(*, pool_name: str, session: Session = ...) -> APIResponse: ...
+def get_pool(*, pool_name: str, session: Session = ...) -> APIResponse: ...
+def get_pools(*, limit: int, order_by: str = 'id', offset: int | None = None, session: Session = ...) -> APIResponse: ...
+def patch_pool(*, pool_name: str, update_mask: UpdateMask = None, session: Session = ...) -> APIResponse: ...
+def post_pool(*, session: Session = ...) -> APIResponse: ...

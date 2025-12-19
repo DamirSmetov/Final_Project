@@ -1,0 +1,19 @@
+from _typeshed import Incomplete
+from airflow.decorators import task as task
+from airflow.models.dag import DAG as DAG
+from airflow.models.param import Param as Param, ParamsDict as ParamsDict
+from airflow.utils.trigger_rule import TriggerRule as TriggerRule
+
+def get_names(**kwargs) -> list[str]: ...
+def select_languages(**kwargs) -> list[str]: ...
+def generate_english_greeting(name: str) -> str: ...
+def generate_german_greeting(name: str) -> str: ...
+def generate_french_greeting(name: str) -> str: ...
+def print_greetings(greetings1, greetings2, greetings3) -> None: ...
+
+lang_select: Incomplete
+names: Incomplete
+english_greetings: Incomplete
+german_greetings: Incomplete
+french_greetings: Incomplete
+results_print: Incomplete

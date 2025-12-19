@@ -1,0 +1,9 @@
+from _typeshed import Incomplete
+from airflow.models import Connection as Connection, Trigger as Trigger, Variable as Variable
+from airflow.utils.providers_configuration_loader import providers_configuration_loaded as providers_configuration_loaded
+from airflow.utils.session import create_session as create_session
+from airflow.utils.sqlalchemy import is_sqlalchemy_v1 as is_sqlalchemy_v1
+
+def rotate_fernet_key(args) -> None: ...
+def rotate_items_in_batches_v1(session, model_class, filter_condition: Incomplete | None = None, batch_size: int = 100) -> None: ...
+def rotate_items_in_batches_v2(session, model_class, filter_condition: Incomplete | None = None, batch_size: int = 100) -> None: ...

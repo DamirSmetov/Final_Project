@@ -1,0 +1,26 @@
+from _typeshed import Incomplete
+from airflow.configuration import conf as conf
+from airflow.exceptions import AirflowConfigException as AirflowConfigException
+from airflow.metrics.protocols import DeltaType as DeltaType, Timer as Timer, TimerProtocol as TimerProtocol
+from airflow.metrics.validators import AllowListValidator as AllowListValidator, BlockListValidator as BlockListValidator, ListValidator as ListValidator, get_validator as get_validator, validate_stat as validate_stat
+from statsd import StatsClient
+from typing import Callable, TypeVar
+
+T = TypeVar('T', bound=Callable)
+log: Incomplete
+
+def prepare_stat_with_tags(fn: T) -> T: ...
+
+class SafeStatsdLogger:
+    statsd: Incomplete
+    metrics_validator: Incomplete
+    influxdb_tags_enabled: Incomplete
+    metric_tags_validator: Incomplete
+    def __init__(self, statsd_client: StatsClient, metrics_validator: ListValidator = ..., influxdb_tags_enabled: bool = False, metric_tags_validator: ListValidator = ...) -> None: ...
+    def incr(self, stat: str, count: int = 1, rate: float = 1, *, tags: dict[str, str] | None = None) -> None: ...
+    def decr(self, stat: str, count: int = 1, rate: float = 1, *, tags: dict[str, str] | None = None) -> None: ...
+    def gauge(self, stat: str, value: int | float, rate: float = 1, delta: bool = False, *, tags: dict[str, str] | None = None) -> None: ...
+    def timing(self, stat: str, dt: DeltaType, *, tags: dict[str, str] | None = None) -> None: ...
+    def timer(self, stat: str | None = None, *args, tags: dict[str, str] | None = None, **kwargs) -> TimerProtocol: ...
+
+def get_statsd_logger(cls) -> SafeStatsdLogger: ...

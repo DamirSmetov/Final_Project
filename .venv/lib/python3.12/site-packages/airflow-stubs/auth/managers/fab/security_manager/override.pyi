@@ -1,0 +1,4 @@
+from airflow.exceptions import RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.providers.fab.auth_manager.security_manager.override import FabAirflowSecurityManagerOverride as FabProviderAirflowSecurityManagerOverride
+
+class FabAirflowSecurityManagerOverride(FabProviderAirflowSecurityManagerOverride): ...

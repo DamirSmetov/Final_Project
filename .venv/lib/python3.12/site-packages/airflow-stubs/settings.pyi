@@ -1,0 +1,126 @@
+import json
+import pluggy
+import traceback
+from _typeshed import Incomplete
+from airflow import policies as policies
+from airflow.configuration import AIRFLOW_HOME as AIRFLOW_HOME, WEBSERVER_CONFIG as WEBSERVER_CONFIG, conf as conf
+from airflow.exceptions import AirflowInternalRuntimeError as AirflowInternalRuntimeError, RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.executors import executor_constants as executor_constants
+from airflow.logging_config import configure_logging as configure_logging
+from airflow.utils.orm_event_handlers import setup_event_handlers as setup_event_handlers
+from airflow.utils.sqlalchemy import is_sqlalchemy_v1 as is_sqlalchemy_v1
+from airflow.utils.state import State as State
+from airflow.utils.timezone import local_timezone as local_timezone, parse_timezone as parse_timezone, utc as utc
+from airflow.www.utils import UIAlert as UIAlert
+from sqlalchemy.engine import Engine as Engine
+from sqlalchemy.orm import Session as SASession
+from typing import Any, Callable
+
+log: Incomplete
+TIMEZONE: Incomplete
+TIMEZONE = utc
+HEADER: Incomplete
+LOGGING_LEVEL: Incomplete
+GUNICORN_WORKER_READY_PREFIX: str
+LOG_FORMAT: Incomplete
+SIMPLE_LOG_FORMAT: Incomplete
+SQL_ALCHEMY_CONN: str | None
+PLUGINS_FOLDER: str | None
+LOGGING_CLASS_PATH: str | None
+DONOT_MODIFY_HANDLERS: bool | None
+DAGS_FOLDER: str
+engine: Engine
+Session: Callable[..., SASession]
+json = json
+STATE_COLORS: Incomplete
+
+def custom_show_warning(message, category, filename, lineno, file: Incomplete | None = None, line: Incomplete | None = None) -> None: ...
+def replace_showwarning(replacement): ...
+
+original_show_warning: Incomplete
+POLICY_PLUGIN_MANAGER: Any
+
+def task_policy(task): ...
+def dag_policy(dag): ...
+def task_instance_mutation_hook(task_instance): ...
+def pod_mutation_hook(pod): ...
+def get_airflow_context_vars(context): ...
+def get_dagbag_import_timeout(dag_file_path: str): ...
+def configure_policy_plugin_manager() -> None: ...
+def load_policy_plugins(pm: pluggy.PluginManager): ...
+def configure_vars() -> None: ...
+def run_providers_custom_runtime_checks() -> None: ...
+
+class SkipDBTestsSession:
+    def __init__(self) -> None: ...
+    def remove(*args, **kwargs) -> None: ...
+    def get_bind(self, mapper: Incomplete | None = None, clause: Incomplete | None = None, bind: Incomplete | None = None, _sa_skip_events: Incomplete | None = None, _sa_skip_for_implicit_returning: bool = False) -> None: ...
+
+def get_cleaned_traceback(stack_summary: traceback.StackSummary) -> str: ...
+
+class TracebackSession:
+    traceback: Incomplete
+    def __init__(self) -> None: ...
+    def __getattr__(self, item) -> None: ...
+    def remove(*args, **kwargs) -> None: ...
+
+AIRFLOW_PATH: Incomplete
+AIRFLOW_TESTS_PATH: Incomplete
+AIRFLOW_SETTINGS_PATH: Incomplete
+AIRFLOW_UTILS_SESSION_PATH: Incomplete
+AIRFLOW_MODELS_BASEOPERATOR_PATH: Incomplete
+AIRFLOW_MODELS_DAG_PATH: Incomplete
+AIRFLOW_DB_UTILS_PATH: Incomplete
+
+class TracebackSessionForTests:
+    db_session_class: Incomplete
+    allow_db_access: bool
+    current_db_session: Incomplete
+    created_traceback: Incomplete
+    def __init__(self) -> None: ...
+    def __getattr__(self, item): ...
+    def remove(*args, **kwargs) -> None: ...
+    @staticmethod
+    def set_allow_db_access(session, flag: bool): ...
+    traceback: Incomplete
+    def is_called_from_test_code(self) -> tuple[bool, traceback.FrameSummary | None]: ...
+    def get_bind(self, mapper: Incomplete | None = None, clause: Incomplete | None = None, bind: Incomplete | None = None, _sa_skip_events: Incomplete | None = None, _sa_skip_for_implicit_returning: bool = False) -> None: ...
+
+def configure_orm(disable_connection_pool: bool = False, pool_class: Incomplete | None = None): ...
+def force_traceback_session_for_untrusted_components(allow_tests_to_use_db: bool = False) -> None: ...
+
+DEFAULT_ENGINE_ARGS: Incomplete
+
+def prepare_engine_args(disable_connection_pool: bool = False, pool_class: Incomplete | None = None): ...
+def dispose_orm() -> None: ...
+def reconfigure_orm(disable_connection_pool: bool = False, pool_class: Incomplete | None = None) -> None: ...
+def configure_adapters(): ...
+def validate_session(): ...
+def configure_action_logging() -> None: ...
+def prepare_syspath_for_config_and_plugins() -> None: ...
+def prepare_syspath_for_dags_folder() -> None: ...
+def get_session_lifetime_config(): ...
+def import_local_settings() -> None: ...
+def initialize() -> None: ...
+
+KILOBYTE: int
+MEGABYTE: Incomplete
+WEB_COLORS: Incomplete
+MIN_SERIALIZED_DAG_UPDATE_INTERVAL: Incomplete
+COMPRESS_SERIALIZED_DAGS: Incomplete
+MIN_SERIALIZED_DAG_FETCH_INTERVAL: Incomplete
+CAN_FORK: Incomplete
+EXECUTE_TASKS_NEW_PYTHON_INTERPRETER: Incomplete
+ALLOW_FUTURE_EXEC_DATES: Incomplete
+CHECK_SLAS: Incomplete
+USE_JOB_SCHEDULE: Incomplete
+LAZY_LOAD_PLUGINS: bool
+LAZY_LOAD_PROVIDERS: bool
+IS_K8S_OR_K8SCELERY_EXECUTOR: Incomplete
+IS_EXECUTOR_CONTAINER: Incomplete
+IS_K8S_EXECUTOR_POD: Incomplete
+HIDE_SENSITIVE_VAR_CONN_FIELDS: Incomplete
+MASK_SECRETS_IN_LOGS: bool
+DASHBOARD_UIALERTS: list[UIAlert]
+AIRFLOW_MOVED_TABLE_PREFIX: str
+DAEMON_UMASK: str
